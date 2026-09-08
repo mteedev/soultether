@@ -1,6 +1,6 @@
 # 💕 SoulTether — OpenSim Partner System for WordPress
 
-![SoulTether](assets/SoulTether_Poster2.png)
+![SoulTether](assets/SoulTether_Poster4.png)
 
 **SoulTether** is a WordPress plugin that brings a fully-featured avatar partnership system to OpenSimulator grids. Residents can send, accept, decline, withdraw, and untether partnerships directly from your WordPress site — with changes syncing live to the OpenSim Robust database and appearing on in-world profiles.
 
