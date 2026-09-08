@@ -1,0 +1,145 @@
+/* ==========================================================================
+   SoulTether — soultether.css
+   OpenSim Partner System for WordPress
+   ========================================================================== */
+
+.st-wrap { max-width: 720px; margin: 0 auto; font-family: inherit; }
+
+/* ── Cards ── */
+.st-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.st-card-title {
+    margin: 0 0 18px;
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #2c2c2c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 12px;
+}
+
+.st-icon { font-size: 1.2em; }
+.st-icon-lg { font-size: 3em; display: block; text-align: center; margin-bottom: 12px; }
+
+/* ── Tethered status ── */
+.st-tethered { text-align: center; padding: 12px 0; }
+.st-heart { font-size: 2.5em; margin-bottom: 8px; }
+.st-partner-name { font-size: 1.1em; margin: 0 0 6px; }
+.st-note { color: #666; font-size: 0.9em; margin: 0 0 18px; }
+.st-untethered { color: #555; }
+.st-hint { font-size: 0.9em; color: #888; margin-top: 4px; }
+
+/* ── Auth card ── */
+.st-auth-card { text-align: center; padding: 40px 28px; }
+.st-auth-card h2 { margin: 8px 0 12px; }
+
+/* ── Request items ── */
+.st-request-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+.st-request-item:last-child { border-bottom: none; }
+.st-request-info { flex: 1; }
+.st-time { font-size: 0.82em; color: #999; }
+.st-request-message { margin: 6px 0 0; font-style: italic; color: #555; font-size: 0.9em; }
+.st-request-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ── Badges ── */
+.st-badge {
+    display: inline-block;
+    background: #5b9bd5;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 2px 8px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+.st-badge-pending { background: #f0ad4e; }
+
+/* ── Send form ── */
+.st-send-form { display: flex; flex-direction: column; gap: 14px; }
+.st-field label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.92em; color: #333; }
+.st-optional { font-weight: 400; color: #999; }
+
+.st-select, .st-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.95em;
+    font-family: inherit;
+    background: #fafafa;
+    transition: border-color 0.15s;
+}
+.st-select:focus, .st-textarea:focus { outline: none; border-color: #5b9bd5; background: #fff; }
+.st-textarea { resize: vertical; }
+
+/* ── Buttons ── */
+.st-btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.92em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    text-align: center;
+    text-decoration: none;
+}
+.st-btn:hover  { opacity: 0.88; }
+.st-btn:active { transform: scale(0.97); }
+.st-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.st-btn-primary   { background: #5b9bd5; color: #fff; }
+.st-btn-success   { background: #28a745; color: #fff; }
+.st-btn-secondary { background: #6c757d; color: #fff; }
+.st-btn-danger    { background: #dc3545; color: #fff; }
+
+/* ── Flash message ── */
+.st-message {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-weight: 500;
+    font-size: 0.95em;
+}
+.st-message.success { background: #d1e7dd; color: #0a3622; border: 1px solid #a3cfbb; }
+.st-message.error   { background: #f8d7da; color: #58151c; border: 1px solid #f1aeb5; }
+
+/* ── Spinner ── */
+.st-spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: st-spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+@keyframes st-spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ── */
+@media (max-width: 540px) {
+    .st-card { padding: 18px 16px; }
+    .st-request-item { flex-direction: column; }
+    .st-request-actions { width: 100%; }
+    .st-btn { width: 100%; }
+}
