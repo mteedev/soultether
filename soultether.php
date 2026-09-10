@@ -3,7 +3,7 @@
  * Plugin Name: SoulTether
  * Plugin URI:  https://github.com/mteedev/soultether
  * Description: SoulTether — OpenSim Partner System for WordPress. Allows grid residents to send, approve, decline, withdraw, and untether partnerships, syncing directly with the OpenSimulator Robust database.
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Gundahar Bravin
  * Author URI:  https://nerdypappy.com
  * License:     GPL-2.0+
@@ -28,20 +28,24 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-define( 'SOULTETHER_VERSION',    '1.0.1' );
+define( 'SOULTETHER_VERSION',    '1.0.2' );
 define( 'SOULTETHER_PATH',       plugin_dir_path( __FILE__ ) );
 define( 'SOULTETHER_URL',        plugin_dir_url( __FILE__ ) );
 define( 'SOULTETHER_TABLE',      'soultether_requests' );
 
 // ─── Robust DB Connection ─────────────────────────────────────────────────────
-// Configure these to match your grid's Robust database credentials.
-// It is recommended to move these to wp-config.php for security:
-//   define( 'SOULTETHER_ROBUST_PASS', 'your_password_here' );
-define( 'SOULTETHER_ROBUST_HOST',   '127.0.0.1' );          // or use unix_socket below
-define( 'SOULTETHER_ROBUST_SOCKET', '/run/mysqld/mysqld.sock' ); // set to '' to use HOST/PORT
-define( 'SOULTETHER_ROBUST_DB',     'robust' );              // your Robust database name
-define( 'SOULTETHER_ROBUST_USER',   'osadmin' );             // your Robust DB user
-define( 'SOULTETHER_ROBUST_PASS',   'YOUR_ROBUST_DB_PASSWORD_HERE' ); // <-- set this
+// SoulTether automatically reads your Robust DB credentials from w4os settings.
+// No manual configuration needed if you have w4os installed and configured!
+//
+// Optional: define these constants in wp-config.php to OVERRIDE w4os settings:
+//   define( 'SOULTETHER_ROBUST_HOST',   '127.0.0.1' );
+//   define( 'SOULTETHER_ROBUST_PORT',   '3306' );
+//   define( 'SOULTETHER_ROBUST_DB',     'robust' );
+//   define( 'SOULTETHER_ROBUST_USER',   'osadmin' );
+//   define( 'SOULTETHER_ROBUST_PASS',   'your_password' );
+//
+// Optional: define a Unix socket path for faster local connections:
+//   define( 'SOULTETHER_ROBUST_SOCKET', '/run/mysqld/mysqld.sock' );
 
 // ─── Includes ─────────────────────────────────────────────────────────────────
 require_once SOULTETHER_PATH . 'includes/class-robust-db.php';

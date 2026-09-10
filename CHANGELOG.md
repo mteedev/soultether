@@ -1,5 +1,13 @@
 # SoulTether Changelog
 
+## [1.0.2] — 2026-09-09
+
+### Changed
+- **Zero-config installation** — SoulTether now automatically reads Robust DB credentials from w4os WordPress settings (`w4os_db_host`, `w4os_db_database`, `w4os_db_user`, `w4os_db_pass`). No manual credential configuration needed if w4os is installed and configured.
+- Manual credential constants in `soultether.php` are now optional overrides only, recommended to be placed in `wp-config.php` if needed.
+
+---
+
 ## [1.0.1] — 2026-06-04
 
 ### Added

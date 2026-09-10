@@ -19,26 +19,38 @@ class SoulTether_Robust_DB {
 
     /**
      * Returns a singleton PDO connection to the Robust DB.
-     * Uses Unix socket if SOULTETHER_ROBUST_SOCKET is set,
-     * otherwise falls back to TCP host connection.
+     * Automatically reads credentials from w4os WordPress settings.
+     * Falls back to SOULTETHER_ROBUST_* constants if w4os is not available.
      */
     public static function get(): PDO {
         if ( self::$instance === null ) {
-            if ( SOULTETHER_ROBUST_SOCKET ) {
+
+            // Read credentials from w4os settings (zero-config!)
+            $host   = get_option( 'w4os_db_host',     defined('SOULTETHER_ROBUST_HOST')   ? SOULTETHER_ROBUST_HOST   : '127.0.0.1' );
+            $port   = get_option( 'w4os_db_port',     defined('SOULTETHER_ROBUST_PORT')   ? SOULTETHER_ROBUST_PORT   : '3306' );
+            $dbname = get_option( 'w4os_db_database', defined('SOULTETHER_ROBUST_DB')     ? SOULTETHER_ROBUST_DB     : 'robust' );
+            $user   = get_option( 'w4os_db_user',     defined('SOULTETHER_ROBUST_USER')   ? SOULTETHER_ROBUST_USER   : '' );
+            $pass   = get_option( 'w4os_db_pass',     defined('SOULTETHER_ROBUST_PASS')   ? SOULTETHER_ROBUST_PASS   : '' );
+
+            // Use Unix socket if host is localhost/127.0.0.1 and socket is defined
+            $socket = defined('SOULTETHER_ROBUST_SOCKET') ? SOULTETHER_ROBUST_SOCKET : '';
+
+            if ( $socket && ( $host === 'localhost' || $host === '127.0.0.1' ) ) {
                 $dsn = sprintf(
                     'mysql:unix_socket=%s;dbname=%s;charset=utf8',
-                    SOULTETHER_ROBUST_SOCKET,
-                    SOULTETHER_ROBUST_DB
+                    $socket,
+                    $dbname
                 );
             } else {
                 $dsn = sprintf(
-                    'mysql:host=%s;dbname=%s;charset=utf8',
-                    SOULTETHER_ROBUST_HOST,
-                    SOULTETHER_ROBUST_DB
+                    'mysql:host=%s;port=%s;dbname=%s;charset=utf8',
+                    $host,
+                    $port,
+                    $dbname
                 );
             }
 
-            self::$instance = new PDO( $dsn, SOULTETHER_ROBUST_USER, SOULTETHER_ROBUST_PASS, [
+            self::$instance = new PDO( $dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES   => false,
